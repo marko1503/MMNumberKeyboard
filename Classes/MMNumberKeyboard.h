@@ -7,70 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MMNumberKeyboardButton.h"
 
-//! Project version number for MMNumberKeyboard.
-FOUNDATION_EXPORT double MMNumberKeyboardVersionNumber;
+#import "MMNumberKeyboardDelegate.h"
 
-//! Project version string for MMNumberKeyboard.
-FOUNDATION_EXPORT const unsigned char MMNumberKeyboardVersionString[];
+////! Project version number for MMNumberKeyboard.
+//FOUNDATION_EXPORT double MMNumberKeyboardVersionNumber;
 
-@class MMNumberKeyboard;
-
-/**
- *  The @c MMNumberKeyboardDelegate protocol defines the messages sent to a delegate object as part of the sequence of editing text. All of the methods of this protocol are optional.
- */
-@protocol MMNumberKeyboardDelegate <NSObject>
-@optional
-
-/**
- *  Asks whether the specified text should be inserted.
- *
- *  @param numberKeyboard The keyboard instance proposing the text insertion.
- *  @param text           The proposed text to be inserted.
- *
- *  @return Returns	@c YES if the text should be inserted or @c NO if it should not.
- */
-- (BOOL)numberKeyboard:(MMNumberKeyboard *)numberKeyboard shouldInsertText:(NSString *)text;
-
-/**
- *  Asks the delegate if the keyboard should process the pressing of the return button.
- *
- *  @param numberKeyboard The keyboard whose return button was pressed.
- *
- *  @return Returns	@c YES if the keyboard should implement its default behavior for the return button; otherwise, @c NO.
- */
-- (BOOL)numberKeyboardShouldReturn:(MMNumberKeyboard *)numberKeyboard;
-
-/**
- *  Asks the delegate if the keyboard should remove the character just before the cursor.
- *
- *  @param numberKeyboard The keyboard whose return button was pressed.
- *
- *  @return Returns	@c YES if the keyboard should implement its default behavior for the delete backward button; otherwise, @c NO.
- */
-- (BOOL)numberKeyboardShouldDeleteBackward:(MMNumberKeyboard *)numberKeyboard;
-
-@end
-
-/**
- *  Specifies the style of a keyboard button.
- */
-typedef NS_ENUM(NSUInteger, MMNumberKeyboardButtonStyle) {
-    /**
-     *  A white style button, such as those for the number keys.
-     */
-    MMNumberKeyboardButtonStyleWhite,
-    
-    /**
-     *  A gray style button, such as the backspace key.
-     */
-    MMNumberKeyboardButtonStyleGray,
-    
-    /**
-     *  A done style button, for example, a button that completes some task and returns to the previous view.
-     */
-    MMNumberKeyboardButtonStyleDone
-};
+////! Project version string for MMNumberKeyboard.
+//FOUNDATION_EXPORT const unsigned char MMNumberKeyboardVersionString[];
 
 /**
  *  A simple keyboard to use with numbers and, optionally, a decimal point.
@@ -93,12 +38,12 @@ typedef NS_ENUM(NSUInteger, MMNumberKeyboardButtonStyle) {
 /**
  *  The receiver key input object. If @c nil the object at top of the responder chain is used.
  */
-@property (weak, nonatomic) id <UIKeyInput> keyInput;
+@property (nonatomic, weak, readonly) id <UIKeyInput> keyInput;
 
 /**
  *  Delegate to change text insertion or return key behavior.
  */
-@property (weak, nonatomic) id <MMNumberKeyboardDelegate> delegate;
+@property (nonatomic, weak) id <MMNumberKeyboardDelegate> delegate;
 
 /**
  *  Configures the special key with an image and an action block.
@@ -122,20 +67,20 @@ typedef NS_ENUM(NSUInteger, MMNumberKeyboardButtonStyle) {
  *
  *  @note The default value of this property is @c NO.
  */
-@property (assign, nonatomic) BOOL allowsDecimalPoint;
+@property (nonatomic, assign) BOOL allowsDecimalPoint;
 
 /**
  *  The visible title of the Return key.
  *
  *  @note The default visible title of the Return key is “Done”.
  */
-@property (copy, nonatomic) NSString *returnKeyTitle;
+@property (nonatomic, copy) NSString *returnKeyTitle;
 
 /**
  *  The button style of the Return key.
  *
  *  @note The default value of this property is @c MMNumberKeyboardButtonStyleDone.
  */
-@property (assign, nonatomic) MMNumberKeyboardButtonStyle returnKeyButtonStyle;
+@property (nonatomic, assign) MMNumberKeyboardButtonStyle returnKeyButtonStyle;
 
 @end
