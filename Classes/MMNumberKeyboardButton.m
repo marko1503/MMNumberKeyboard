@@ -117,6 +117,8 @@
         buttonLayer.shadowOffset = CGSizeMake(0, 1.0f);
         buttonLayer.shadowOpacity = 1.0f;
         buttonLayer.shadowRadius = 0.0f;
+
+        [self _updateButtonAppearance];
     }
 }
 

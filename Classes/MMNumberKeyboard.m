@@ -287,9 +287,9 @@ static const CGFloat kNumberKeyboardPadSpacing = 8.0;
 
 #pragma mark - Default special action.
 - (void)p_dismissKeyboard:(id)sender {
-    UIResponder *firstResponder = self.keyInput;
-    if (firstResponder) {
-        [firstResponder resignFirstResponder];
+    id <UIKeyInput> keyInput = self.keyInput;
+    if ([keyInput isKindOfClass:[UIResponder class]]) {
+        [(UIResponder *)keyInput resignFirstResponder];
     }
 }
 
